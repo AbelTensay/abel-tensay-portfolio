@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { siteConfig } from "@/config/site";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { BackgroundGrid } from "@/components/ui/BackgroundGrid";
+import { PageTransition } from "@/components/layout/PageTransition";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
+  themeColor: "#070709",
   width: "device-width",
   initialScale: 1,
 };
@@ -57,8 +61,13 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} dark antialiased h-full`}
     >
-      <body className="min-h-full bg-neutral-950 text-neutral-100 font-sans selection:bg-neutral-800 selection:text-neutral-100 flex flex-col">
-        {children}
+      <body className="min-h-full bg-[#070709] text-neutral-100 font-sans selection:bg-blue-600/30 selection:text-white flex flex-col relative">
+        <BackgroundGrid />
+        <Navbar />
+        <div className="pt-24 flex-1 flex flex-col">
+          <PageTransition>{children}</PageTransition>
+        </div>
+        <Footer />
       </body>
     </html>
   );

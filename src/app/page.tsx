@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpRight,
-  Code2,
   Cpu,
   Layers,
   Sparkles,
@@ -19,6 +18,7 @@ import { Text } from "@/components/ui/Text";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/Card";
+import { HeroSceneWrapper } from "@/components/3d";
 import { FEATURED_PROJECTS } from "@/data/projects";
 import { EXPERIENCE_ITEMS, CAPABILITIES } from "@/data/experience";
 
@@ -26,8 +26,11 @@ export default function HomePage() {
   return (
     <main className="relative z-10 space-y-8 sm:space-y-16 pb-20">
       {/* ================= HERO SECTION ================= */}
-      <section className="relative pt-12 pb-20 sm:pt-20 sm:pb-32 overflow-hidden">
-        <Container size="lg" className="space-y-8">
+      <section className="relative pt-12 pb-20 sm:pt-24 sm:pb-36 overflow-hidden min-h-[85vh] flex items-center">
+        {/* Responsive 3D Interactive Canvas Scene Background */}
+        <HeroSceneWrapper />
+
+        <Container size="lg" className="space-y-8 relative z-10">
           {/* Status Badge */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -51,7 +54,7 @@ export default function HomePage() {
               <Heading
                 level={1}
                 gradient
-                className="text-5xl sm:text-7xl lg:text-8xl tracking-tight"
+                className="text-5xl sm:text-7xl lg:text-8xl tracking-tight drop-shadow-2xl"
               >
                 ABEL TENSAY
               </Heading>
@@ -61,7 +64,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg sm:text-2xl text-neutral-300 font-light leading-relaxed max-w-3xl"
+              className="text-lg sm:text-2xl text-neutral-300 font-light leading-relaxed max-w-3xl drop-shadow-md"
             >
               Engineering production-grade software products with full-stack architecture, resilient backend code, and distinctive UI/UX design.
             </motion.p>

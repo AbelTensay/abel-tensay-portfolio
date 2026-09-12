@@ -1,2 +1,1 @@
-// Export 3D Components
-export {};
+export { HeroSceneWrapper } from "./HeroSceneWrapper";

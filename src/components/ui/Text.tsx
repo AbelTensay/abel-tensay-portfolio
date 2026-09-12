@@ -3,12 +3,12 @@ import { cn } from "@/lib/utils";
 
 interface TextProps extends React.HTMLAttributes<HTMLParagraphElement> {
   variant?: "lead" | "body" | "small" | "muted" | "mono";
-  as?: React.ElementType;
+  asSpan?: boolean;
 }
 
 export function Text({
   variant = "body",
-  as: Component = "p",
+  asSpan = false,
   className,
   children,
   ...props
@@ -21,9 +21,19 @@ export function Text({
     mono: "font-mono text-xs sm:text-sm text-neutral-400 leading-relaxed",
   };
 
+  const combinedClassName = cn(variants[variant], className);
+
+  if (asSpan) {
+    return (
+      <span className={combinedClassName} {...props}>
+        {children}
+      </span>
+    );
+  }
+
   return (
-    <Component className={cn(variants[variant], className)} {...props}>
+    <p className={combinedClassName} {...props}>
       {children}
-    </Component>
+    </p>
   );
 }

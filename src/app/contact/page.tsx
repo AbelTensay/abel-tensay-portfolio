@@ -113,7 +113,7 @@ export default function ContactPage() {
                   >
                     <div className="flex items-center gap-2">
                       <LinkedinIcon className="h-4 w-4 text-blue-400" />
-                      <span>LinkedIn / abeltensay</span>
+                      <span>LinkedIn / abel-tensay</span>
                     </div>
                     <span className="text-neutral-500">→</span>
                   </a>

@@ -1,23 +1,38 @@
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
 async function main() {
   console.log("Seeding database...");
 
-  // Seed Admin User (Email: abeltensay@example.com)
+  // Hash the admin password
+  const passwordHash = await bcrypt.hash("82481@Amj", 12);
+
+  // Seed Admin User
   const admin = await prisma.user.upsert({
-    where: { email: "abeltensay@example.com" },
-    update: {},
+    where: { email: "abeltensay2@gmail.com" },
+    update: {
+      passwordHash,
+      name: "Abel Tensay",
+    },
     create: {
-      email: "abeltensay@example.com",
+      email: "abeltensay2@gmail.com",
       name: "Abel Tensay",
       role: "ADMIN",
-      passwordHash: "placeholder-hash-will-be-managed-via-auth",
+      passwordHash,
     },
   });
 
+  // Remove any old placeholder user if it exists
+  await prisma.user
+    .delete({ where: { email: "abeltensay@example.com" } })
+    .catch(() => {
+      /* no-op if not found */
+    });
+
   console.log("Seeded Admin User:", admin.email);
+
 
   // Seed Initial Projects
   const digitalEkub = await prisma.project.upsert({

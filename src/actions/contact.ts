@@ -48,7 +48,7 @@ export async function sendContactMessage(input: SendContactInput) {
       // Notification email to Abel
       await resend.emails.send({
         from: env.RESEND_FROM_EMAIL || "portfolio@abeltensay.com",
-        to: env.CONTACT_EMAIL || "abeltensay@example.com",
+        to: env.CONTACT_EMAIL || "abeltensay2@gmail.com",
         subject: `New Portfolio Inquiry: ${subject}`,
         react: NotificationEmail({ name, email, subject, message }),
       });

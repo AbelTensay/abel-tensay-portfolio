@@ -8,8 +8,8 @@ export const siteConfig = {
   role: "Software Engineer · Full-Stack Developer · UI/UX Designer",
   links: {
     github: "https://github.com/AbelTensay",
-    linkedin: "https://linkedin.com/in/abeltensay",
-    email: "contact@abeltensay.com",
+    linkedin: "https://www.linkedin.com/in/abel-tensay",
+    email: "abeltensay2@gmail.com",
   },
   nav: [
     { name: "Home", path: "/" },

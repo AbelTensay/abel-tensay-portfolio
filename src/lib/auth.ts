@@ -2,6 +2,7 @@ import NextAuth, { NextAuthOptions, DefaultSession } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { db } from "@/lib/db";
 import { env } from "@/lib/env";
+import bcrypt from "bcryptjs";
 
 declare module "next-auth" {
   interface User {
@@ -42,25 +43,27 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        // Verify admin user credentials
+        // Look up the admin user by email
         const user = await db.user.findUnique({
           where: { email: credentials.email },
         });
 
-        // Demo/Dev verification fallback
-        if (
-          credentials.email === "abeltensay@example.com" ||
-          (user && user.role === "ADMIN")
-        ) {
-          return {
-            id: user?.id || "admin-user-id",
-            name: user?.name || "Abel Tensay",
-            email: credentials.email,
-            role: "ADMIN",
-          };
-        }
+        if (!user || user.role !== "ADMIN") return null;
 
-        return null;
+        // Verify password against stored hash
+        if (!user.passwordHash) return null;
+        const isValid = await bcrypt.compare(
+          credentials.password,
+          user.passwordHash
+        );
+        if (!isValid) return null;
+
+        return {
+          id: user.id,
+          name: user.name || "Abel Tensay",
+          email: user.email,
+          role: "ADMIN",
+        };
       },
     }),
   ],
@@ -97,7 +100,7 @@ export async function getAdminSession(): Promise<AdminUserSession | null> {
     if (!adminUser) {
       return {
         id: "admin-default-id",
-        email: "abeltensay@example.com",
+        email: "abeltensay2@gmail.com",
         name: "Abel Tensay",
         role: "ADMIN",
       };
@@ -112,7 +115,7 @@ export async function getAdminSession(): Promise<AdminUserSession | null> {
   } catch {
     return {
       id: "admin-default-id",
-      email: "abeltensay@example.com",
+      email: "abeltensay2@gmail.com",
       name: "Abel Tensay",
       role: "ADMIN",
     };

@@ -11,9 +11,9 @@ import { Button } from "@/components/ui/Button";
 export default function AdminSettingsPage() {
   const [name, setName] = useState("Abel Tensay");
   const [headline, setHeadline] = useState("Software Engineer · Full-Stack Developer · UI/UX Designer");
-  const [email, setEmail] = useState("contact@abeltensay.com");
+  const [email, setEmail] = useState("abeltensay2@gmail.com");
   const [github, setGithub] = useState("https://github.com/AbelTensay");
-  const [linkedin, setLinkedin] = useState("https://linkedin.com/in/abeltensay");
+  const [linkedin, setLinkedin] = useState("https://www.linkedin.com/in/abel-tensay");
   const [bio, setBio] = useState("Engineering production-grade software products with full-stack architecture, resilient backend code, and distinctive UI/UX design.");
   const [isSaved, setIsSaved] = useState(false);
   const [isLoading, setIsLoading] = useState(false);

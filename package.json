@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:seed": "node --env-file=.env.local node_modules/tsx/dist/cli.mjs prisma/seed.ts",
+    "db:studio": "node --env-file=.env.local node_modules/.bin/prisma studio"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
@@ -38,10 +40,15 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/three": "^0.186.0",
+    "dotenv": "^17.4.2",
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
     "prisma": "5.22.0",
     "tailwindcss": "^4",
+    "tsx": "^4.23.13",
     "typescript": "^5"
+  },
+  "prisma": {
+    "seed": "node --env-file=.env.local node_modules/tsx/dist/cli.mjs prisma/seed.ts"
   }
 }

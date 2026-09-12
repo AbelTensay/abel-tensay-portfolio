@@ -1,2 +1,1 @@
-// Export Admin Dashboard Components
-export {};
+export { AdminSidebar } from "./AdminSidebar";

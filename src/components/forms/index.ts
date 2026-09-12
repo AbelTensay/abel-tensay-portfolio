@@ -1,2 +1,1 @@
-// Export Form Components
-export {};
+export { ContactForm } from "./ContactForm";

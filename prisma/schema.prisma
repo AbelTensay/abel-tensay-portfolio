@@ -8,11 +8,150 @@ generator client {
   provider = "prisma-client-js"
 }
 
-// Initial schema stub for Phase 1
+// 1. Admin / User Model for Auth.js
 model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  passwordHash  String?
+  image         String?
+  role          String    @default("ADMIN")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([email])
+}
+
+// 2. Project Model
+model Project {
+  id                String              @id @default(cuid())
+  title             String
+  slug              String              @unique
+  shortDescription  String
+  fullDescription   String              @db.Text
+  problem           String              @db.Text
+  solution          String              @db.Text
+  technicalApproach String              @db.Text
+  result            String              @db.Text
+  role              String
+  category          String              @default("Full-Stack")
+  featured          Boolean             @default(false)
+  published         Boolean             @default(true)
+  displayOrder      Int                 @default(0)
+  githubUrl         String?
+  liveUrl           String?
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+
+  images            ProjectImage[]
+  technologies      ProjectTechnology[]
+
+  @@index([slug])
+  @@index([featured, published])
+}
+
+// 3. Project Image Model
+model ProjectImage {
+  id           String   @id @default(cuid())
+  projectId    String
+  url          String
+  altText      String?
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+
+  project      Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+}
+
+// 4. Technology Model
+model Technology {
+  id       String              @id @default(cuid())
+  name     String              @unique
+  category String              @default("Frontend")
+  projects ProjectTechnology[]
+}
+
+// 5. Project Technology Join Table
+model ProjectTechnology {
+  projectId    String
+  technologyId String
+
+  project    Project    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  technology Technology @relation(fields: [technologyId], references: [id], onDelete: Cascade)
+
+  @@id([projectId, technologyId])
+  @@index([projectId])
+  @@index([technologyId])
+}
+
+// 6. Experience Model
+model Experience {
+  id           String   @id @default(cuid())
+  company      String
+  role         String
+  location     String
+  startDate    String
+  endDate      String?
+  description  String   @db.Text
+  displayOrder Int      @default(0)
+  published    Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([displayOrder])
+}
+
+// 7. Skill Category Model
+model SkillCategory {
+  id           String   @id @default(cuid())
+  name         String
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+
+  skills       Skill[]
+}
+
+// 8. Skill Model
+model Skill {
+  id           String        @id @default(cuid())
+  categoryId   String
+  name         String
+  displayOrder Int           @default(0)
+  createdAt    DateTime      @default(now())
+
+  category     SkillCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@index([categoryId])
+}
+
+// 9. Message Model (Contact Submissions)
+model Message {
   id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
+  name      String
+  email     String
+  subject   String
+  message   String   @db.Text
+  read      Boolean  @default(false)
+  archived  Boolean  @default(false)
   createdAt DateTime @default(now())
+
+  @@index([read])
+  @@index([createdAt])
+}
+
+// 10. Site Settings Model
+model SiteSettings {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String   @db.Text
   updatedAt DateTime @updatedAt
+}
+
+// 11. Social Link Model
+model SocialLink {
+  id           String   @id @default(cuid())
+  platform     String
+  url          String
+  displayOrder Int      @default(0)
 }

@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { CheckCircle2, Send, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { sendContactMessage } from "@/actions/contact";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -32,11 +33,13 @@ export function ContactForm() {
   const onSubmit = async (data: ContactFormValues) => {
     setServerError(null);
     try {
-      // Simulate client side submission validation stub until Phase 10 Resend integration
-      await new Promise((resolve) => setTimeout(resolve, 800));
-      console.log("Contact form submitted:", data);
-      setIsSuccess(true);
-      reset();
+      const res = await sendContactMessage(data);
+      if (res.success) {
+        setIsSuccess(true);
+        reset();
+      } else {
+        setServerError(res.error || "An error occurred while submitting your message.");
+      }
     } catch {
       setServerError("Failed to send message. Please try sending directly to contact@abeltensay.com.");
     }
@@ -48,7 +51,7 @@ export function ContactForm() {
         <CheckCircle2 className="h-12 w-12 text-emerald-400 mx-auto animate-bounce" />
         <h3 className="text-2xl font-bold text-neutral-100">Message Sent Successfully!</h3>
         <p className="text-sm text-neutral-300 max-w-md mx-auto">
-          Thank you for reaching out. A confirmation email has been logged, and Abel Tensay will reply shortly.
+          Thank you for reaching out. Your message has been saved and an email notification was triggered. Abel Tensay will reply shortly.
         </p>
         <Button
           variant="outline"

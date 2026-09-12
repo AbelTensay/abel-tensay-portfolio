@@ -44,7 +44,39 @@ export async function getFeaturedProjects(): Promise<ProjectData[]> {
   return allProjects.filter((p) => p.featured);
 }
 
+export async function getAdminProjects() {
+  try {
+    return await db.project.findMany({
+      orderBy: { displayOrder: "asc" },
+      include: {
+        technologies: {
+          include: { technology: true },
+        },
+        images: true,
+      },
+    });
+  } catch {
+    return [];
+  }
+}
+
+export async function getAdminProjectById(id: string) {
+  try {
+    return await db.project.findUnique({
+      where: { id },
+      include: {
+        technologies: { include: { technology: true } },
+        images: true,
+      },
+    });
+  } catch {
+    return null;
+  }
+}
+
 export async function getProjectBySlug(slug: string): Promise<ProjectData | null> {
   const allProjects = await getProjects();
   return allProjects.find((p) => p.slug === slug) || null;
 }
+
+

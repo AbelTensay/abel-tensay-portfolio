@@ -24,3 +24,14 @@ export async function getExperiences(): Promise<ExperienceData[]> {
     return EXPERIENCE_ITEMS;
   }
 }
+
+export async function getAdminExperiences() {
+  try {
+    return await db.experience.findMany({
+      orderBy: { displayOrder: "asc" },
+    });
+  } catch {
+    return [];
+  }
+}
+

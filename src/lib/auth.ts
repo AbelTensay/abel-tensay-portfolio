@@ -1,4 +1,5 @@
 import NextAuth, { NextAuthOptions, DefaultSession } from "next-auth";
+import { getServerSession } from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { db } from "@/lib/db";
 import { env } from "@/lib/env";
@@ -92,33 +93,19 @@ export interface AdminUserSession {
 
 export async function getAdminSession(): Promise<AdminUserSession | null> {
   try {
-    const adminUser = await db.user.findFirst({
-      where: { role: "ADMIN" },
-      select: { id: true, email: true, name: true, role: true },
-    });
-
-    if (!adminUser) {
-      return {
-        id: "admin-default-id",
-        email: "abeltensay2@gmail.com",
-        name: "Abel Tensay",
-        role: "ADMIN",
-      };
+    const session = await getServerSession(authOptions);
+    if (!session || !session.user || session.user.role !== "ADMIN") {
+      return null;
     }
-
     return {
-      id: adminUser.id,
-      email: adminUser.email,
-      name: adminUser.name || "Abel Tensay",
-      role: adminUser.role,
+      id: (session.user as { id?: string }).id || session.user.email || "admin",
+      email: session.user.email || "",
+      name: session.user.name || "Abel Tensay",
+      role: session.user.role || "ADMIN",
     };
-  } catch {
-    return {
-      id: "admin-default-id",
-      email: "abeltensay2@gmail.com",
-      name: "Abel Tensay",
-      role: "ADMIN",
-    };
+  } catch (err) {
+    console.error("Error retrieving admin session:", err);
+    return null;
   }
 }
 

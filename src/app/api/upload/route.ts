@@ -1,8 +1,12 @@
 import { NextResponse } from "next/server";
 import { put } from "@vercel/blob";
+import { requireAdminSession } from "@/lib/auth";
 
 export async function POST(request: Request) {
   try {
+    // Enforce server-side admin authentication
+    await requireAdminSession();
+
     const formData = await request.formData();
     const file = formData.get("file") as File;
 
@@ -50,8 +54,8 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("File upload error:", error);
     return NextResponse.json(
-      { error: "Failed to upload file" },
-      { status: 500 }
+      { error: "Unauthorized or failed to upload file" },
+      { status: 401 }
     );
   }
 }

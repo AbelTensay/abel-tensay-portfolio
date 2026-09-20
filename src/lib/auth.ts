@@ -44,9 +44,16 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        // Look up the admin user by email
-        const user = await db.user.findUnique({
-          where: { email: credentials.email },
+        const emailClean = credentials.email.trim().toLowerCase();
+
+        // Look up the admin user by email (case-insensitive)
+        const user = await db.user.findFirst({
+          where: {
+            email: {
+              equals: emailClean,
+              mode: "insensitive",
+            },
+          },
         });
 
         if (!user || user.role !== "ADMIN") return null;

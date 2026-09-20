@@ -2,14 +2,17 @@ import React from "react";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
-import LoginFormClient from "./LoginFormClient";
 
-export default async function AdminLoginPage() {
+export default async function AdminDashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const session = await getServerSession(authOptions);
 
-  if (session && session.user?.role === "ADMIN") {
-    redirect("/admin");
+  if (!session || session.user?.role !== "ADMIN") {
+    redirect("/admin/login");
   }
 
-  return <LoginFormClient />;
+  return <>{children}</>;
 }

@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { Image, Upload, Trash2, ExternalLink, FileCode, Check } from "lucide-react";
+import React, { useState, useRef } from "react";
+import { Image, Upload, Trash2, ExternalLink, FileCode, Check, Loader2 } from "lucide-react";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { Heading } from "@/components/ui/Heading";
 import { Text } from "@/components/ui/Text";
@@ -47,6 +47,10 @@ const INITIAL_ASSETS: MediaAsset[] = [
 export default function AdminMediaPage() {
   const [assets, setAssets] = useState<MediaAsset[]>(INITIAL_ASSETS);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleCopy = (url: string, id: string) => {
     navigator.clipboard.writeText(url);
@@ -57,6 +61,40 @@ export default function AdminMediaPage() {
   const handleDelete = (id: string) => {
     if (confirm("Are you sure you want to delete this media asset?")) {
       setAssets((prev) => prev.filter((a) => a.id !== id));
+    }
+  };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+
+    const file = files[0];
+    setIsUploading(true);
+    setUploadError(null);
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to upload asset");
+      }
+
+      const newAsset: MediaAsset = await res.json();
+      setAssets((prev) => [newAsset, ...prev]);
+    } catch (err) {
+      console.error(err);
+      setUploadError("Upload failed. Please try again.");
+    } finally {
+      setIsUploading(false);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
     }
   };
 
@@ -75,10 +113,37 @@ export default function AdminMediaPage() {
             </Text>
           </div>
 
-          <Button variant="primary" size="sm" leftIcon={<Upload className="h-4 w-4" />}>
-            Upload Asset
-          </Button>
+          <div>
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleFileChange}
+              className="hidden"
+              accept="image/*,application/pdf"
+            />
+            <Button
+              variant="primary"
+              size="sm"
+              disabled={isUploading}
+              onClick={() => fileInputRef.current?.click()}
+              leftIcon={
+                isUploading ? (
+                  <Loader2 className="h-4 w-4 animate-spin text-neutral-900" />
+                ) : (
+                  <Upload className="h-4 w-4" />
+                )
+              }
+            >
+              {isUploading ? "Uploading..." : "Upload Asset"}
+            </Button>
+          </div>
         </div>
+
+        {uploadError && (
+          <div className="p-3 bg-red-950/50 border border-red-800 rounded-lg text-red-300 text-xs font-mono">
+            {uploadError}
+          </div>
+        )}
 
         {/* Assets Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -86,7 +151,12 @@ export default function AdminMediaPage() {
             <Card key={asset.id} hoverEffect={false} className="p-4 space-y-3 bg-neutral-900/40 border-neutral-800">
               <div className="h-32 rounded-lg bg-neutral-950 flex items-center justify-center border border-neutral-800 text-neutral-500 overflow-hidden relative group">
                 {asset.type.startsWith("image") ? (
-                  <Image className="h-8 w-8 text-blue-400" />
+                  asset.url.startsWith("data:image") || asset.url.startsWith("http") ? (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img src={asset.url} alt={asset.name} className="h-full w-full object-cover rounded-lg" />
+                  ) : (
+                    <Image className="h-8 w-8 text-blue-400" />
+                  )
                 ) : (
                   <FileCode className="h-8 w-8 text-purple-400" />
                 )}

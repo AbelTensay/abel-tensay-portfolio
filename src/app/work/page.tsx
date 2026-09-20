@@ -56,17 +56,17 @@ export default function WorkListingPage() {
         </div>
 
         {/* Filter & Search Bar */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-4 border-t border-b border-neutral-800/80 py-4">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-4 border-t border-b border-slate-200 py-4">
           {/* Category Filter Pills */}
           <div className="flex flex-wrap items-center gap-2">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1.5 rounded-lg font-mono text-xs font-medium transition-colors cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg font-mono text-xs font-bold transition-colors cursor-pointer ${
                   selectedCategory === cat
-                    ? "bg-blue-600 text-white shadow-md shadow-blue-600/20"
-                    : "bg-neutral-900/60 text-neutral-400 hover:text-neutral-100 hover:bg-neutral-800/60 border border-neutral-800"
+                    ? "bg-emerald-700 text-white shadow-md shadow-emerald-700/20"
+                    : "bg-white text-slate-700 hover:text-emerald-800 hover:bg-emerald-50 border border-slate-200"
                 }`}
               >
                 {cat}
@@ -76,13 +76,13 @@ export default function WorkListingPage() {
 
           {/* Search Bar */}
           <div className="relative min-w-[240px]">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-neutral-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
             <input
               type="text"
               placeholder="Search projects or tech..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-lg border border-neutral-800 bg-neutral-900/60 py-1.5 pl-9 pr-3 text-xs text-neutral-100 placeholder-neutral-500 focus:border-blue-500 focus:outline-none"
+              className="w-full rounded-lg border border-slate-200 bg-white py-1.5 pl-9 pr-3 text-xs text-slate-800 placeholder-slate-400 focus:border-emerald-600 focus:outline-none shadow-sm"
             />
           </div>
         </div>
@@ -94,10 +94,10 @@ export default function WorkListingPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="py-16 text-center space-y-3 rounded-2xl border border-neutral-800/60 bg-neutral-900/20"
+              className="py-16 text-center space-y-3 rounded-2xl border border-slate-200 bg-white/80"
             >
-              <p className="text-lg font-semibold text-neutral-300">No projects found</p>
-              <p className="text-sm text-neutral-500">
+              <p className="text-lg font-semibold text-slate-800">No projects found</p>
+              <p className="text-sm text-slate-500">
                 Try adjusting your search query or selected filter category.
               </p>
             </motion.div>
@@ -112,30 +112,30 @@ export default function WorkListingPage() {
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <Card className="h-full flex flex-col justify-between group hover:border-blue-500/40 transition-all duration-300">
+                  <Card className="h-full flex flex-col justify-between group hover:border-emerald-600/40 transition-all duration-300">
                     <CardHeader className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <span className="font-mono text-xs text-blue-400 font-semibold uppercase tracking-wider">
+                        <span className="font-mono text-xs text-emerald-700 font-bold uppercase tracking-wider">
                           {project.category}
                         </span>
-                        <span className="font-mono text-xs text-neutral-500">0{idx + 1}</span>
+                        <span className="font-mono text-xs text-slate-400 font-semibold">0{idx + 1}</span>
                       </div>
-                      <h2 className="text-2xl font-bold text-neutral-100 group-hover:text-blue-400 transition-colors flex items-center justify-between">
+                      <h2 className="text-2xl font-bold text-slate-900 group-hover:text-emerald-700 transition-colors flex items-center justify-between">
                         <span>{project.title}</span>
-                        <ArrowUpRight className="h-5 w-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all text-blue-400" />
+                        <ArrowUpRight className="h-5 w-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all text-emerald-700" />
                       </h2>
                     </CardHeader>
 
                     <CardContent className="space-y-4 flex-1">
-                      <Text variant="body" className="text-neutral-300">
+                      <Text variant="body" className="text-slate-600">
                         {project.shortDescription}
                       </Text>
 
-                      <div className="rounded-lg bg-neutral-950/60 p-3.5 border border-neutral-800/60 space-y-1.5">
-                        <span className="font-mono text-[11px] uppercase tracking-wider text-neutral-400 font-medium block">
+                      <div className="rounded-lg bg-slate-50 p-3.5 border border-slate-200 space-y-1.5">
+                        <span className="font-mono text-[11px] uppercase tracking-wider text-slate-500 font-bold block">
                           Role:
                         </span>
-                        <p className="text-xs text-neutral-300">{project.role}</p>
+                        <p className="text-xs text-slate-700 font-semibold">{project.role}</p>
                       </div>
 
                       <div className="flex flex-wrap gap-1.5 pt-2">
@@ -147,10 +147,10 @@ export default function WorkListingPage() {
                       </div>
                     </CardContent>
 
-                    <CardFooter className="flex items-center justify-between pt-4 border-t border-neutral-800/60">
+                    <CardFooter className="flex items-center justify-between pt-4 border-t border-slate-200">
                       <Link
                         href={`/work/${project.slug}`}
-                        className="text-xs font-mono text-neutral-300 hover:text-white flex items-center gap-1 font-medium"
+                        className="text-xs font-mono text-slate-800 hover:text-emerald-700 flex items-center gap-1 font-bold"
                       >
                         <span>Read Full Case Study</span>
                         <ChevronRight className="h-3.5 w-3.5" />
@@ -162,7 +162,7 @@ export default function WorkListingPage() {
                             href={project.githubUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-xs font-mono text-neutral-400 hover:text-white flex items-center gap-1"
+                            className="text-xs font-mono text-slate-500 hover:text-emerald-700 flex items-center gap-1 font-semibold"
                             aria-label="GitHub Repository"
                           >
                             <GithubIcon className="h-3.5 w-3.5" />
@@ -174,7 +174,7 @@ export default function WorkListingPage() {
                             href={project.liveUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-xs font-mono text-neutral-400 hover:text-blue-400 flex items-center gap-1"
+                            className="text-xs font-mono text-slate-500 hover:text-emerald-700 flex items-center gap-1 font-semibold"
                           >
                             <span>Live Demo</span>
                             <ExternalLink className="h-3.5 w-3.5" />

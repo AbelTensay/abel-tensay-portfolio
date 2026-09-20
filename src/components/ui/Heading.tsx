@@ -25,15 +25,15 @@ export function Heading({
   const combinedClassName = cn(
     sizes[level],
     gradient
-      ? "bg-gradient-to-r from-neutral-100 via-neutral-200 to-neutral-400 bg-clip-text text-transparent"
-      : "text-neutral-100",
+      ? "bg-gradient-to-r from-emerald-950 via-emerald-800 to-teal-700 bg-clip-text text-transparent"
+      : "text-slate-900",
     className
   );
 
   return (
     <div className="space-y-2">
       {eyebrow && (
-        <span className="font-mono text-xs uppercase tracking-widest text-blue-400/90 font-medium block">
+        <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 font-bold block">
           // {eyebrow}
         </span>
       )}

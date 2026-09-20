@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-dark: #070709;
-  --color-surface-dark: #0e0e12;
-  --color-surface-hover: #16161d;
-  --color-border-subtle: #1a1a24;
-  --color-border-glow: #2a2b3d;
-  --color-accent-blue: #3b82f6;
-  --color-accent-cyan: #06b6d4;
-  --color-accent-purple: #8b5cf6;
-  --color-text-main: #f4f4f5;
-  --color-text-muted: #94a3b8;
+  --color-bg-light: #fafaf9;
+  --color-surface-white: #ffffff;
+  --color-surface-hover: #f1f5f9;
+  --color-border-subtle: #e2e8f0;
+  --color-border-glow: #10b981;
+  --color-accent-forest: #047857;
+  --color-accent-emerald: #059669;
+  --color-accent-mint: #34d399;
+  --color-text-main: #0f172a;
+  --color-text-muted: #475569;
   --color-text-dim: #64748b;
   --font-mono: var(--font-geist-mono), monospace;
   --font-sans: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
@@ -18,42 +18,42 @@
 
 @layer base {
   :root {
-    --bg-dark: #070709;
-    --surface-dark: #0e0e12;
-    --surface-hover: #16161d;
-    --border-subtle: #1a1a24;
-    --border-glow: #2a2b3d;
-    --accent-blue: #3b82f6;
-    --accent-purple: #8b5cf6;
-    --text-main: #f4f4f5;
-    --text-muted: #94a3b8;
+    --bg-light: #fafaf9;
+    --surface-white: #ffffff;
+    --surface-hover: #f1f5f9;
+    --border-subtle: #e2e8f0;
+    --border-glow: rgba(5, 150, 105, 0.2);
+    --accent-forest: #047857;
+    --accent-emerald: #059669;
+    --text-main: #0f172a;
+    --text-muted: #475569;
   }
 
   html {
-    color-scheme: dark;
+    color-scheme: light;
     scroll-behavior: smooth;
   }
 
   body {
-    background-color: var(--bg-dark);
-    color: var(--text-main);
+    background-color: #fafaf9;
+    color: #0f172a;
     font-family: var(--font-sans);
     overflow-x: hidden;
     min-height: 100vh;
   }
 }
 
-/* Background grid utility */
+/* Background grid utility for light theme */
 .bg-grid-pattern {
   background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(4, 120, 87, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(4, 120, 87, 0.05) 1px, transparent 1px);
 }
 
 .bg-dot-pattern {
   background-size: 24px 24px;
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(4, 120, 87, 0.08) 1px, transparent 1px);
 }
 
 /* Custom Scrollbars */
@@ -62,20 +62,20 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #070709;
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1f1f2e;
+  background: #a7f3d0;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3b82f6;
+  background: #059669;
 }
 
 /* Focus outline styles for accessibility */
 *:focus-visible {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid #059669;
   outline-offset: 2px;
 }

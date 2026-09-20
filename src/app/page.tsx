@@ -36,10 +36,10 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-3.5 py-1.5 backdrop-blur-md"
+            className="inline-flex items-center gap-2 rounded-full border border-emerald-600/30 bg-emerald-50/90 px-3.5 py-1.5 backdrop-blur-md shadow-sm"
           >
-            <span className="h-2 w-2 rounded-full bg-blue-400 animate-pulse" />
-            <span className="font-mono text-xs font-medium uppercase tracking-wider text-blue-300">
+            <span className="h-2 w-2 rounded-full bg-emerald-600 animate-pulse" />
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-emerald-800">
               Software Engineer · Full-Stack · UI/UX Designer
             </span>
           </motion.div>
@@ -54,7 +54,7 @@ export default function HomePage() {
               <Heading
                 level={1}
                 gradient
-                className="text-5xl sm:text-7xl lg:text-8xl tracking-tight drop-shadow-2xl"
+                className="text-5xl sm:text-7xl lg:text-8xl tracking-tight drop-shadow-sm"
               >
                 ABEL TENSAY
               </Heading>
@@ -64,7 +64,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg sm:text-2xl text-neutral-300 font-light leading-relaxed max-w-3xl drop-shadow-md"
+              className="text-lg sm:text-2xl text-slate-700 font-normal leading-relaxed max-w-3xl"
             >
               Engineering production-grade software products with full-stack architecture, resilient backend code, and distinctive UI/UX design.
             </motion.p>
@@ -83,7 +83,7 @@ export default function HomePage() {
               </Button>
             </Link>
             <Link href="/contact">
-              <Button size="lg" variant="glass" rightIcon={<ArrowUpRight className="h-4 w-4" />}>
+              <Button size="lg" variant="outline" rightIcon={<ArrowUpRight className="h-4 w-4" />}>
                 Let&apos;s Work Together
               </Button>
             </Link>
@@ -94,15 +94,15 @@ export default function HomePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="pt-8 border-t border-neutral-800/80 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-3"
+            className="pt-8 border-t border-slate-200/80 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-3"
           >
             {["Next.js", "TypeScript", "React 19", "Python", "PostgreSQL", "Tailwind CSS", "Three.js"].map(
               (tech) => (
                 <div
                   key={tech}
-                  className="flex items-center gap-2 rounded-lg border border-neutral-800/60 bg-neutral-900/40 px-3 py-2 text-xs font-mono text-neutral-400 backdrop-blur-sm"
+                  className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white/80 px-3 py-2 text-xs font-mono text-slate-700 shadow-sm backdrop-blur-sm"
                 >
-                  <span className="h-1.5 w-1.5 rounded-full bg-blue-500/80" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
                   <span>{tech}</span>
                 </div>
               )
@@ -114,7 +114,7 @@ export default function HomePage() {
       {/* ================= FEATURED WORK SECTION ================= */}
       <Section id="work">
         <Container size="lg" className="space-y-12">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-neutral-800/80 pb-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-6">
             <Heading level={2} eyebrow="Selected Work" gradient>
               Practical Products Engineered
             </Heading>
@@ -135,30 +135,30 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
               >
-                <Card className="h-full flex flex-col justify-between group hover:border-blue-500/40 transition-all duration-300">
+                <Card className="h-full flex flex-col justify-between group hover:border-emerald-600/40 transition-all duration-300">
                   <CardHeader className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="font-mono text-xs text-blue-400 font-semibold uppercase tracking-wider">
+                      <span className="font-mono text-xs text-emerald-700 font-bold uppercase tracking-wider">
                         {project.category}
                       </span>
-                      <span className="font-mono text-xs text-neutral-500">0{idx + 1}</span>
+                      <span className="font-mono text-xs text-slate-400 font-semibold">0{idx + 1}</span>
                     </div>
-                    <h3 className="text-2xl font-bold text-neutral-100 group-hover:text-blue-400 transition-colors flex items-center justify-between">
+                    <h3 className="text-2xl font-bold text-slate-900 group-hover:text-emerald-700 transition-colors flex items-center justify-between">
                       <span>{project.title}</span>
-                      <ArrowUpRight className="h-5 w-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all text-blue-400" />
+                      <ArrowUpRight className="h-5 w-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all text-emerald-700" />
                     </h3>
                   </CardHeader>
 
                   <CardContent className="space-y-4 flex-1">
-                    <Text variant="body" className="text-neutral-300">
+                    <Text variant="body" className="text-slate-600">
                       {project.shortDescription}
                     </Text>
 
-                    <div className="rounded-lg bg-neutral-950/60 p-3.5 border border-neutral-800/60 space-y-1.5">
-                      <span className="font-mono text-[11px] uppercase tracking-wider text-neutral-400 font-medium block">
+                    <div className="rounded-lg bg-slate-50 p-3.5 border border-slate-200 space-y-1.5">
+                      <span className="font-mono text-[11px] uppercase tracking-wider text-slate-500 font-bold block">
                         Role & Impact:
                       </span>
-                      <p className="text-xs text-neutral-300">{project.role}</p>
+                      <p className="text-xs text-slate-700 font-medium">{project.role}</p>
                     </div>
 
                     <div className="flex flex-wrap gap-1.5 pt-2">
@@ -170,10 +170,10 @@ export default function HomePage() {
                     </div>
                   </CardContent>
 
-                  <CardFooter className="flex items-center justify-between pt-4 border-t border-neutral-800/60">
+                  <CardFooter className="flex items-center justify-between pt-4 border-t border-slate-200">
                     <Link
                       href={`/work/${project.slug}`}
-                      className="text-xs font-mono text-neutral-300 hover:text-white flex items-center gap-1 font-medium"
+                      className="text-xs font-mono text-slate-700 hover:text-emerald-700 flex items-center gap-1 font-bold"
                     >
                       <span>Read Case Study</span>
                       <ChevronRight className="h-3.5 w-3.5" />
@@ -184,7 +184,7 @@ export default function HomePage() {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs font-mono text-neutral-400 hover:text-blue-400 flex items-center gap-1"
+                        className="text-xs font-mono text-slate-500 hover:text-emerald-700 flex items-center gap-1 font-semibold"
                       >
                         <span>Live Demo</span>
                         <ExternalLink className="h-3.5 w-3.5" />
@@ -206,32 +206,32 @@ export default function HomePage() {
           </Heading>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card hoverEffect={false} className="space-y-4 border-neutral-800/60">
-              <div className="h-10 w-10 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+            <Card hoverEffect={false} className="space-y-4 border-slate-200">
+              <div className="h-10 w-10 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700">
                 <Cpu className="h-5 w-5" />
               </div>
-              <h4 className="text-lg font-bold text-neutral-100">Products Over Prototypes</h4>
-              <Text variant="small" className="text-neutral-400">
+              <h4 className="text-lg font-bold text-slate-900">Products Over Prototypes</h4>
+              <Text variant="small" className="text-slate-600">
                 Software should solve tangible business problems. I focus on building complete, maintainable end-to-end systems built for production scale.
               </Text>
             </Card>
 
-            <Card hoverEffect={false} className="space-y-4 border-neutral-800/60">
-              <div className="h-10 w-10 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+            <Card hoverEffect={false} className="space-y-4 border-slate-200">
+              <div className="h-10 w-10 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700">
                 <Layers className="h-5 w-5" />
               </div>
-              <h4 className="text-lg font-bold text-neutral-100">Full-Stack Ownership</h4>
-              <Text variant="small" className="text-neutral-400">
+              <h4 className="text-lg font-bold text-slate-900">Full-Stack Ownership</h4>
+              <Text variant="small" className="text-slate-600">
                 From PostgreSQL schemas and Server Actions to state management and responsive styling, I bridge data architecture with client-side performance.
               </Text>
             </Card>
 
-            <Card hoverEffect={false} className="space-y-4 border-neutral-800/60">
-              <div className="h-10 w-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+            <Card hoverEffect={false} className="space-y-4 border-slate-200">
+              <div className="h-10 w-10 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700">
                 <Sparkles className="h-5 w-5" />
               </div>
-              <h4 className="text-lg font-bold text-neutral-100">UI/UX Polish & Motion</h4>
-              <Text variant="small" className="text-neutral-400">
+              <h4 className="text-lg font-bold text-slate-900">UI/UX Polish & Motion</h4>
+              <Text variant="small" className="text-slate-600">
                 A great product must feel intuitive and alive. I implement intentional micro-interactions, editorial typography, and responsive layouts.
               </Text>
             </Card>
@@ -250,17 +250,17 @@ export default function HomePage() {
             {CAPABILITIES.map((cap, i) => (
               <Card key={i} className="space-y-6 flex flex-col justify-between">
                 <div className="space-y-3">
-                  <span className="font-mono text-xs uppercase tracking-widest text-blue-400 font-medium">
+                  <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 font-bold">
                     {cap.tagline}
                   </span>
-                  <h3 className="text-xl font-bold text-neutral-100">{cap.title}</h3>
-                  <Text variant="small" className="text-neutral-400">
+                  <h3 className="text-xl font-bold text-slate-900">{cap.title}</h3>
+                  <Text variant="small" className="text-slate-600">
                     {cap.description}
                   </Text>
                 </div>
 
-                <div className="space-y-2 pt-4 border-t border-neutral-800/60">
-                  <span className="font-mono text-[11px] text-neutral-400 uppercase tracking-wider block">
+                <div className="space-y-2 pt-4 border-t border-slate-200">
+                  <span className="font-mono text-[11px] text-slate-500 uppercase tracking-wider block font-semibold">
                     Key Technologies:
                   </span>
                   <div className="flex flex-wrap gap-1.5">
@@ -280,7 +280,7 @@ export default function HomePage() {
       {/* ================= EXPERIENCE PREVIEW ================= */}
       <Section id="experience">
         <Container size="lg" className="space-y-12">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-neutral-800/80 pb-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-6">
             <Heading level={2} eyebrow="Track Record" gradient>
               Selected Experience
             </Heading>
@@ -294,23 +294,23 @@ export default function HomePage() {
           <div className="space-y-6">
             {EXPERIENCE_ITEMS.map((exp) => (
               <Card key={exp.id} className="p-6 md:p-8">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-neutral-800/60 pb-4 mb-4">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-4 mb-4">
                   <div>
-                    <h3 className="text-xl font-bold text-neutral-100">{exp.role}</h3>
-                    <p className="text-sm font-mono text-blue-400">{exp.company} — {exp.location}</p>
+                    <h3 className="text-xl font-bold text-slate-900">{exp.role}</h3>
+                    <p className="text-sm font-mono text-emerald-700 font-bold">{exp.company} — {exp.location}</p>
                   </div>
                   <Badge variant="outline" size="md">
                     {exp.startDate} - {exp.endDate}
                   </Badge>
                 </div>
 
-                <ul className="space-y-2 text-sm text-neutral-300 list-disc list-inside">
+                <ul className="space-y-2 text-sm text-slate-700 list-disc list-inside">
                   {exp.description.map((item, idx) => (
                     <li key={idx}>{item}</li>
                   ))}
                 </ul>
 
-                <div className="flex flex-wrap gap-1.5 pt-4 mt-4 border-t border-neutral-800/40">
+                <div className="flex flex-wrap gap-1.5 pt-4 mt-4 border-t border-slate-200">
                   {exp.technologies.map((t) => (
                     <Badge key={t} variant="ghost" size="sm">
                       {t}
@@ -326,30 +326,30 @@ export default function HomePage() {
       {/* ================= CONTACT CTA BANNER ================= */}
       <Section id="contact-cta">
         <Container size="lg">
-          <div className="relative rounded-3xl border border-blue-500/30 bg-gradient-to-br from-neutral-900/90 via-neutral-950 to-neutral-900/90 p-8 sm:p-14 text-center overflow-hidden shadow-2xl backdrop-blur-xl space-y-8">
-            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-blue-600/10 blur-3xl pointer-events-none" />
-            <div className="absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-purple-600/10 blur-3xl pointer-events-none" />
+          <div className="relative rounded-3xl border border-emerald-800/30 bg-gradient-to-br from-emerald-900 via-emerald-950 to-slate-900 p-8 sm:p-14 text-center overflow-hidden shadow-2xl space-y-8 text-white">
+            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-emerald-500/20 blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-teal-500/20 blur-3xl pointer-events-none" />
 
-            <div className="space-y-4 max-w-2xl mx-auto">
-              <span className="font-mono text-xs uppercase tracking-widest text-blue-400 font-semibold">
+            <div className="space-y-4 max-w-2xl mx-auto relative z-10">
+              <span className="font-mono text-xs uppercase tracking-widest text-emerald-300 font-bold">
                 // Let&apos;s Build Together
               </span>
-              <Heading level={2} gradient className="text-3xl sm:text-5xl">
+              <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
                 Ready to create an exceptional digital product?
-              </Heading>
-              <Text variant="lead">
+              </h2>
+              <p className="text-lg text-emerald-100/90 font-light">
                 I am open to full-time engineering roles, high-impact contract projects, and product design collaborations.
-              </Text>
+              </p>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-4 relative z-10">
               <Link href="/contact">
                 <Button size="lg" variant="primary" rightIcon={<ArrowRight className="h-4 w-4" />}>
                   Start a Conversation
                 </Button>
               </Link>
               <Link href="/experience">
-                <Button size="lg" variant="outline">
+                <Button size="lg" variant="outline" className="border-emerald-300/40 text-white hover:bg-emerald-800/40">
                   Review Credentials
                 </Button>
               </Link>

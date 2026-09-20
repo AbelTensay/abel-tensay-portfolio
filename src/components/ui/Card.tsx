@@ -22,8 +22,8 @@ export function Card({
       whileHover={hoverEffect ? { y: -3 } : undefined}
       transition={{ duration: 0.2, ease: "easeOut" }}
       className={cn(
-        "group relative rounded-xl border border-neutral-800/80 bg-neutral-900/40 p-6 backdrop-blur-md transition-all duration-300 hover:border-neutral-700/80 hover:bg-neutral-900/60 shadow-lg shadow-black/40 overflow-hidden",
-        glow && "before:absolute before:inset-0 before:-z-10 before:rounded-xl before:bg-gradient-to-r before:from-blue-500/10 before:to-purple-500/10 before:opacity-0 before:transition-opacity hover:before:opacity-100",
+        "group relative rounded-xl border border-slate-200/90 bg-white/90 p-6 backdrop-blur-md transition-all duration-300 hover:border-emerald-500/40 hover:bg-white shadow-sm shadow-emerald-950/5 hover:shadow-md hover:shadow-emerald-900/10 overflow-hidden",
+        glow && "before:absolute before:inset-0 before:-z-10 before:rounded-xl before:bg-gradient-to-r before:from-emerald-500/10 before:to-teal-500/10 before:opacity-0 before:transition-opacity hover:before:opacity-100",
         className
       )}
       {...props}
@@ -47,7 +47,7 @@ export function CardContent({ className, children, ...props }: React.HTMLAttribu
 
 export function CardFooter({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn("flex items-center pt-4 border-t border-neutral-800/60 mt-4", className)} {...props}>
+    <div className={cn("flex items-center pt-4 border-t border-slate-200/80 mt-4", className)} {...props}>
       {children}
     </div>
   );

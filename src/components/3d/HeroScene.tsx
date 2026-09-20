@@ -33,9 +33,9 @@ function TechCoreMesh({ isMobile }: { isMobile: boolean }) {
       >
         <torusKnotGeometry args={[1, 0.35, isMobile ? 64 : 128, isMobile ? 16 : 32]} />
         <MeshDistortMaterial
-          color={hovered ? "#60a5fa" : "#3b82f6"}
-          roughness={0.2}
-          metalness={0.8}
+          color={hovered ? "#34d399" : "#059669"}
+          roughness={0.25}
+          metalness={0.7}
           distort={hovered ? 0.4 : 0.25}
           speed={2.5}
           wireframe={hovered}
@@ -76,10 +76,10 @@ function ParticleNetwork({ particleCount }: { particleCount: number }) {
       </bufferGeometry>
       <pointsMaterial
         size={0.06}
-        color="#8b5cf6"
+        color="#10b981"
         sizeAttenuation
         transparent
-        opacity={0.6}
+        opacity={0.65}
       />
     </points>
   );
@@ -120,7 +120,7 @@ export function HeroScene() {
   // Graceful fallback for low performance, reduced motion, or WebGL absence
   if (!hasWebGL || reducedMotion) {
     return (
-      <div className="absolute inset-0 -z-10 flex items-center justify-center bg-gradient-to-tr from-blue-950/20 via-transparent to-purple-950/20 opacity-70 pointer-events-none" />
+      <div className="absolute inset-0 -z-10 flex items-center justify-center bg-gradient-to-tr from-emerald-950/10 via-transparent to-teal-950/10 opacity-70 pointer-events-none" />
     );
   }
 
@@ -131,13 +131,13 @@ export function HeroScene() {
   };
 
   return (
-    <div className="absolute inset-0 -z-10 h-full w-full opacity-80 pointer-events-auto">
+    <div className="absolute inset-0 -z-10 h-full w-full opacity-90 pointer-events-auto">
       <Canvas gl={{ antialias: deviceQuality !== "mobile" }} dpr={[1, deviceQuality === "mobile" ? 1.5 : 2]}>
         <PerspectiveCamera makeDefault position={[0, 0, 6]} fov={50} />
-        <ambientLight intensity={0.6} />
-        <directionalLight position={[10, 10, 5]} intensity={1.2} color="#ffffff" />
-        <pointLight position={[-10, -10, -5]} intensity={0.8} color="#8b5cf6" />
-        <pointLight position={[5, 5, 5]} intensity={1} color="#3b82f6" />
+        <ambientLight intensity={0.7} />
+        <directionalLight position={[10, 10, 5]} intensity={1.3} color="#ffffff" />
+        <pointLight position={[-10, -10, -5]} intensity={0.9} color="#047857" />
+        <pointLight position={[5, 5, 5]} intensity={1.1} color="#10b981" />
 
         <TechCoreMesh isMobile={deviceQuality === "mobile"} />
         <ParticleNetwork particleCount={particleCounts[deviceQuality]} />

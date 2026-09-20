@@ -32,31 +32,31 @@ export function Footer() {
   };
 
   return (
-    <footer className="border-t border-neutral-900 bg-neutral-950/80 pt-16 pb-12 relative z-10">
+    <footer className="border-t border-slate-200/80 bg-slate-100/80 pt-16 pb-12 relative z-10">
       <Container size="lg" className="space-y-12">
         {/* Main Footer Header */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           <div className="md:col-span-6 space-y-4">
             <div className="flex items-center gap-2">
-              <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="font-mono text-xs text-neutral-400 uppercase tracking-wider">
+              <span className="flex h-2 w-2 rounded-full bg-emerald-600 animate-pulse" />
+              <span className="font-mono text-xs text-emerald-800 font-semibold uppercase tracking-wider">
                 Available for software engineering & product design roles
               </span>
             </div>
-            <h3 className="text-xl font-bold tracking-tight text-neutral-100">
+            <h3 className="text-xl font-bold tracking-tight text-slate-900">
               Abel Tensay
             </h3>
-            <Text variant="small" className="max-w-md">
+            <Text variant="small" className="max-w-md text-slate-600">
               Software engineer specializing in full-stack development, interactive visual experiences, and high-impact digital products.
             </Text>
           </div>
 
           <div className="md:col-span-3 space-y-3">
-            <h4 className="font-mono text-xs uppercase tracking-widest text-neutral-400">Navigation</h4>
-            <ul className="space-y-2 text-sm text-neutral-400">
+            <h4 className="font-mono text-xs font-bold uppercase tracking-widest text-slate-500">Navigation</h4>
+            <ul className="space-y-2 text-sm text-slate-600 font-medium">
               {siteConfig.nav.map((item) => (
                 <li key={item.path}>
-                  <Link href={item.path} className="hover:text-neutral-100 transition-colors">
+                  <Link href={item.path} className="hover:text-emerald-700 transition-colors">
                     {item.name}
                   </Link>
                 </li>
@@ -65,14 +65,14 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-3 space-y-3">
-            <h4 className="font-mono text-xs uppercase tracking-widest text-neutral-400">Connect</h4>
+            <h4 className="font-mono text-xs font-bold uppercase tracking-widest text-slate-500">Connect</h4>
             <div className="flex items-center gap-3">
               <a
                 href={siteConfig.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub Profile"
-                className="p-2 rounded-lg border border-neutral-800 bg-neutral-900/60 text-neutral-400 hover:text-white hover:border-neutral-700 transition-all"
+                className="p-2 rounded-lg border border-slate-300 bg-white text-slate-700 hover:text-emerald-700 hover:border-emerald-600 transition-all shadow-sm"
               >
                 <GithubIcon className="h-4 w-4" />
               </a>
@@ -81,14 +81,14 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn Profile"
-                className="p-2 rounded-lg border border-neutral-800 bg-neutral-900/60 text-neutral-400 hover:text-white hover:border-neutral-700 transition-all"
+                className="p-2 rounded-lg border border-slate-300 bg-white text-slate-700 hover:text-emerald-700 hover:border-emerald-600 transition-all shadow-sm"
               >
                 <LinkedinIcon className="h-4 w-4" />
               </a>
               <a
                 href={`mailto:${siteConfig.links.email}`}
                 aria-label="Email Abel Tensay"
-                className="p-2 rounded-lg border border-neutral-800 bg-neutral-900/60 text-neutral-400 hover:text-white hover:border-neutral-700 transition-all"
+                className="p-2 rounded-lg border border-slate-300 bg-white text-slate-700 hover:text-emerald-700 hover:border-emerald-600 transition-all shadow-sm"
               >
                 <Mail className="h-4 w-4" />
               </a>
@@ -97,12 +97,12 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-neutral-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500 font-mono">
+        <div className="pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-mono">
           <p>© {new Date().getFullYear()} Abel Tensay. Designed & Engineered for Vercel.</p>
 
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-1.5 hover:text-neutral-200 transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 text-slate-600 hover:text-emerald-700 font-semibold transition-colors cursor-pointer"
           >
             <span>Back to top</span>
             <ArrowUp className="h-3.5 w-3.5" />

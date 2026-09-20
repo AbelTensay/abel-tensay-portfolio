@@ -14,11 +14,11 @@ export function Text({
   ...props
 }: TextProps) {
   const variants = {
-    lead: "text-lg sm:text-xl text-neutral-300 font-normal leading-relaxed",
-    body: "text-base text-neutral-300 leading-relaxed",
-    small: "text-sm text-neutral-400 leading-normal",
-    muted: "text-xs sm:text-sm text-neutral-500 leading-normal",
-    mono: "font-mono text-xs sm:text-sm text-neutral-400 leading-relaxed",
+    lead: "text-lg sm:text-xl text-slate-700 font-normal leading-relaxed",
+    body: "text-base text-slate-700 leading-relaxed",
+    small: "text-sm text-slate-600 leading-normal",
+    muted: "text-xs sm:text-sm text-slate-500 leading-normal",
+    mono: "font-mono text-xs sm:text-sm text-slate-600 leading-relaxed",
   };
 
   const combinedClassName = cn(variants[variant], className);

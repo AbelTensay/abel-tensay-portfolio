@@ -44,30 +44,48 @@ export default function HomePage() {
             </span>
           </motion.div>
 
-          {/* Hero Typography */}
-          <div className="space-y-6 max-w-4xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              <Heading
-                level={1}
-                gradient
-                className="text-5xl sm:text-7xl lg:text-8xl tracking-tight drop-shadow-sm"
+          {/* Hero Typography & Profile Image */}
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 max-w-5xl">
+            <div className="space-y-6 flex-1">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
               >
-                ABEL TENSAY
-              </Heading>
-            </motion.div>
+                <Heading
+                  level={1}
+                  gradient
+                  className="text-5xl sm:text-7xl lg:text-8xl tracking-tight drop-shadow-sm"
+                >
+                  ABEL TENSAY
+                </Heading>
+              </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-lg sm:text-2xl text-slate-700 font-normal leading-relaxed max-w-3xl"
+              >
+                Engineering production-grade software products with full-stack architecture, resilient backend code, and distinctive UI/UX design.
+              </motion.p>
+            </div>
+
+            {/* Profile Picture */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg sm:text-2xl text-slate-700 font-normal leading-relaxed max-w-3xl"
+              className="relative shrink-0"
             >
-              Engineering production-grade software products with full-stack architecture, resilient backend code, and distinctive UI/UX design.
-            </motion.p>
+              <div className="relative h-44 w-44 sm:h-52 sm:w-52 rounded-2xl overflow-hidden border-2 border-emerald-600/30 shadow-xl shadow-emerald-950/10 ring-4 ring-emerald-50">
+                <img
+                  src="/profile.jpg"
+                  alt="Abel Tensay"
+                  className="h-full w-full object-cover object-center"
+                />
+              </div>
+            </motion.div>
           </div>
 
           {/* Call-to-Action Buttons */}

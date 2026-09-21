@@ -68,8 +68,24 @@ export default function AboutPage() {
           {/* Sidebar Highlight Box */}
           <div className="lg:col-span-5 space-y-6">
             <Card hoverEffect={false} className="p-6 space-y-6 bg-white/90 border-slate-200">
-              <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-                <Terminal className="h-5 w-5 text-emerald-700" />
+              {/* Profile Image Banner */}
+              <div className="flex items-center gap-4 border-b border-slate-200 pb-4">
+                <div className="relative h-20 w-20 rounded-xl overflow-hidden border border-emerald-600/30 shadow-md ring-2 ring-emerald-50 shrink-0">
+                  <img
+                    src="/profile.jpg"
+                    alt="Abel Tensay"
+                    className="h-full w-full object-cover object-center"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900">Abel Tensay</h3>
+                  <p className="text-xs font-mono text-emerald-700 font-bold">Software Engineer</p>
+                  <p className="text-[11px] text-slate-500 font-medium">Addis Ababa, Ethiopia</p>
+                </div>
+              </div>
+
+              <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                <Terminal className="h-4 w-4 text-emerald-700" />
                 <span>Quick Snapshot</span>
               </h3>
 

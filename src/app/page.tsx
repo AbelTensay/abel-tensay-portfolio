@@ -45,8 +45,8 @@ export default function HomePage() {
           </motion.div>
 
           {/* Hero Typography & Profile Image */}
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 max-w-5xl">
-            <div className="space-y-6 flex-1">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-8 space-y-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -76,9 +76,9 @@ export default function HomePage() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative shrink-0"
+              className="lg:col-span-4 flex justify-start lg:justify-end relative z-20"
             >
-              <div className="relative h-44 w-44 sm:h-52 sm:w-52 rounded-2xl overflow-hidden border-2 border-emerald-600/30 shadow-xl shadow-emerald-950/10 ring-4 ring-emerald-50">
+              <div className="relative h-48 w-48 sm:h-56 sm:w-56 rounded-2xl overflow-hidden border-2 border-emerald-600/40 shadow-2xl shadow-emerald-950/20 ring-4 ring-white bg-white">
                 <img
                   src="/profile.jpg"
                   alt="Abel Tensay"

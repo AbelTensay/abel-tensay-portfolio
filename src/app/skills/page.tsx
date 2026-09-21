@@ -1,12 +1,14 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Code2, Cpu, Database, Globe, Layers, Layout, Server, Sparkles, Terminal } from "lucide-react";
+import { ArrowRight, Cpu, Database, Globe, Layout } from "lucide-react";
 import { Container } from "@/components/ui/Section";
 import { Heading } from "@/components/ui/Heading";
 import { Text } from "@/components/ui/Text";
-import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
+import { getSkillCategories } from "@/lib/data-access";
+
+export const dynamic = "force-dynamic";
 
 interface SkillCategory {
   title: string;
@@ -15,10 +17,10 @@ interface SkillCategory {
   skills: { name: string; level: string; core?: boolean }[];
 }
 
-const SKILL_CATEGORIES: SkillCategory[] = [
+const DEFAULT_SKILL_CATEGORIES: SkillCategory[] = [
   {
     title: "Full-Stack & Web Architecture",
-    icon: <Globe className="h-5 w-5 text-blue-400" />,
+    icon: <Globe className="h-5 w-5 text-emerald-700" />,
     description: "Server-side rendering, API integration, routing, and modern web application framework architecture.",
     skills: [
       { name: "Next.js (App Router)", level: "Advanced", core: true },
@@ -31,7 +33,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
   },
   {
     title: "Database & Backend Infrastructure",
-    icon: <Database className="h-5 w-5 text-purple-400" />,
+    icon: <Database className="h-5 w-5 text-emerald-700" />,
     description: "Relational database schema modeling, transaction safety, and ORM abstractions.",
     skills: [
       { name: "PostgreSQL", level: "Advanced", core: true },
@@ -44,7 +46,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
   },
   {
     title: "UI/UX Design & Frontend Engineering",
-    icon: <Layout className="h-5 w-5 text-cyan-400" />,
+    icon: <Layout className="h-5 w-5 text-emerald-700" />,
     description: "Responsive layouts, micro-animations, component design primitives, and accessibility standards.",
     skills: [
       { name: "Tailwind CSS", level: "Advanced", core: true },
@@ -57,7 +59,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
   },
   {
     title: "Computer Vision & Systems",
-    icon: <Cpu className="h-5 w-5 text-emerald-400" />,
+    icon: <Cpu className="h-5 w-5 text-emerald-700" />,
     description: "Video stream processing queues, real-time object inference, and image processing pipeline engineering.",
     skills: [
       { name: "OpenCV", level: "Intermediate", core: true },
@@ -69,7 +71,23 @@ const SKILL_CATEGORIES: SkillCategory[] = [
   },
 ];
 
-export default function SkillsMatrixPage() {
+export default async function SkillsMatrixPage() {
+  const dbCategories = await getSkillCategories();
+
+  const displayCategories: SkillCategory[] =
+    dbCategories.length > 0
+      ? dbCategories.map((cat, idx) => ({
+          title: cat.name,
+          icon: DEFAULT_SKILL_CATEGORIES[idx % DEFAULT_SKILL_CATEGORIES.length]?.icon || <Globe className="h-5 w-5 text-emerald-700" />,
+          description: DEFAULT_SKILL_CATEGORIES[idx % DEFAULT_SKILL_CATEGORIES.length]?.description || "Core technical proficiency and toolset.",
+          skills: cat.skills.map((s) => ({
+            name: s.name,
+            level: "Proficient",
+            core: true,
+          })),
+        }))
+      : DEFAULT_SKILL_CATEGORIES;
+
   return (
     <main className="relative z-10 py-12 sm:py-20 space-y-12">
       <Container size="lg" className="space-y-12">
@@ -85,35 +103,35 @@ export default function SkillsMatrixPage() {
 
         {/* Skill Category Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {SKILL_CATEGORIES.map((cat, i) => (
+          {displayCategories.map((cat, i) => (
             <Card key={i} className="p-6 md:p-8 space-y-6 flex flex-col justify-between">
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-2.5 rounded-xl bg-neutral-900 border border-neutral-800">
+                  <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200">
                     {cat.icon}
                   </div>
-                  <h2 className="text-xl font-bold text-neutral-100">{cat.title}</h2>
+                  <h2 className="text-xl font-bold text-slate-900">{cat.title}</h2>
                 </div>
 
-                <Text variant="small" className="text-neutral-400">
+                <Text variant="small" className="text-slate-600">
                   {cat.description}
                 </Text>
               </div>
 
-              <div className="space-y-3 pt-4 border-t border-neutral-800/60">
-                <span className="font-mono text-[11px] text-neutral-400 uppercase tracking-wider block">
+              <div className="space-y-3 pt-4 border-t border-slate-200">
+                <span className="font-mono text-[11px] text-slate-500 uppercase tracking-wider block font-bold">
                   Proficiencies:
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {cat.skills.map((skill) => (
                     <div
                       key={skill.name}
-                      className="flex items-center justify-between p-2 rounded-lg bg-neutral-950/60 border border-neutral-800/60 text-xs"
+                      className="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-200 text-xs"
                     >
-                      <span className={`font-mono ${skill.core ? "text-neutral-100 font-semibold" : "text-neutral-400"}`}>
+                      <span className={`font-mono ${skill.core ? "text-slate-900 font-bold" : "text-slate-600"}`}>
                         {skill.name}
                       </span>
-                      <span className="text-[10px] font-mono text-blue-400 font-medium">
+                      <span className="text-[10px] font-mono text-emerald-700 font-bold">
                         {skill.level}
                       </span>
                     </div>
@@ -125,7 +143,7 @@ export default function SkillsMatrixPage() {
         </div>
 
         {/* CTA Banner */}
-        <div className="pt-8 text-center space-y-4 border-t border-neutral-800">
+        <div className="pt-8 text-center space-y-4 border-t border-slate-200">
           <Heading level={3}>Looking for a developer with this tech stack?</Heading>
           <div className="flex justify-center gap-4">
             <Link href="/contact">
